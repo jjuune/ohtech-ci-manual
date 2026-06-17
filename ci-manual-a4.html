@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CI Manual — A4 Form · OH Technology Co., Ltd</title>
+  <meta name="description" content="OH Technology CI Manual A4 양식. 출력 및 보관용 공식 서식." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ══════════════════════════════════════════════
+       OH Technology — CI Manual A4 Print Template
+       Style: Clean · Minimal · Print-Ready
+       ══════════════════════════════════════════════ */
+
+    /* ── PRINT CONFIG ──────────────────────────── */
+    @page {
+      size: A4 portrait;
+      margin: 18mm 20mm 16mm 20mm;
+    }
+
+    @media print {
+      .print-controls { display: none !important; }
+      .page { box-shadow: none !important; margin: 0 !important; }
+      body { background: white !important; padding: 0 !important; }
+      .page-break { page-break-after: always; break-after: page; }
+    }
+
+    /* ── BASE ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #2563EB;
+      --text-dark: #1a1e2a;
+      --text-mid: #5a6478;
+      --text-light: #9ba3b4;
+      --text-xlight: #c8cdd9;
+      --border: #e4e7ef;
+      --border-light: #f0f2f8;
+      --bg-subtle: #f8f9fc;
+      --bg-field: #fafbfd;
+      --font: 'Inter', 'Noto Sans KR', sans-serif;
+    }
+
+    html, body {
+      font-family: var(--font);
+      background: #e8eaef;
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SCREEN WRAPPER ────────────────────────── */
+    body {
+      padding: 32px 24px 80px;
+    }
+
+    /* ── PRINT CONTROLS (SCREEN ONLY) ─────────── */
+    .print-controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-print {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.25);
+      transition: all 0.2s;
+    }
+
+    .btn-print:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-guide {
+      background: white;
+      color: var(--text-mid);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 11px;
+      font-family: var(--font);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .btn-guide:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── A4 PAGE ───────────────────────────────── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 18mm 20mm 16mm;
+    }
+
+    /* ── PAGE HEADER ───────────────────────────── */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 6mm;
+      border-bottom: 0.4mm solid var(--text-dark);
+      margin-bottom: 8mm;
+    }
+
+    .ph-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+    }
+
+    .ph-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5mm;
+    }
+
+    .ph-oh {
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .ph-tech {
+      font-size: 10pt;
+      font-weight: 300;
+      color: var(--text-mid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .ph-company {
+      font-size: 7pt;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+      margin-top: 1mm;
+    }
+
+    .ph-doc-info {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+    }
+
+    .ph-doc-title {
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+    }
+
+    .ph-doc-meta {
+      font-size: 6.5pt;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PAGE FOOTER ───────────────────────────── */
+    .page-footer {
+      margin-top: auto;
+      padding-top: 5mm;
+      border-top: 0.2mm solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pf-left {
+      font-size: 6pt;
+      color: var(--text-xlight);
+      letter-spacing: 0.04em;
+    }
+
+    .pf-center {
+      font-size: 6pt;
+      color: var(--text-xlight);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    .pf-right {
+      font-size: 6pt;
+      color: var(--text-xlight);
+      font-family: 'Inter', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SECTION TITLE ─────────────────────────── */
+    .sec-num {
+      font-size: 7pt;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.5mm;
+    }
+
+    .sec-title {
+      font-size: 20pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+      line-height: 1.1;
+      margin-bottom: 1.5mm;
+    }
+
+    .sec-desc {
+      font-size: 8pt;
+      color: var(--text-mid);
+      font-weight: 400;
+      margin-bottom: 7mm;
+    }
+
+    .sec-divider {
+      width: 100%;
+      height: 0.3mm;
+      background: var(--border);
+      margin-bottom: 7mm;
+    }
+
+    /* ── COVER PAGE SPECIAL ────────────────────── */
+    .cover-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6mm;
+      text-align: center;
+    }
+
+    .cover-badge {
+      font-size: 7pt;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      border: 0.3mm solid var(--border);
+      padding: 2mm 6mm;
+      border-radius: 1mm;
+    }
+
+    .cover-logo-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2mm;
+    }
+
+    .cover-logo-ph {
+      width: 60mm;
+      height: 30mm;
+      border: 0.4mm dashed var(--border);
+      border-radius: 1mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-subtle);
+    }
+
+    .cover-logo-ph-text {
+      font-size: 7pt;
+      color: var(--text-xlight);
+      letter-spacing: 0.1em;
+    }
+
+    .cover-logo-label {
+      font-size: 6.5pt;
+      color: var(--text-xlight);
+    }
+
+    .cover-wordmark {
+      display: flex;
+      align-items: baseline;
+      gap: 2mm;
+    }
+
+    .cover-oh {
+      font-size: 40pt;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .cover-technology {
+      font-size: 18pt;
+      font-weight: 300;
+      color: var(--text-mid);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .cover-company-name {
+      font-size: 10pt;
+      font-weight: 400;
+      color: var(--text-mid);
+      letter-spacing: 0.06em;
+    }
+
+    .cover-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 4mm;
+      font-size: 7.5pt;
+      color: var(--text-light);
+    }
+
+    .cover-meta-sep { color: var(--border); }
+
+    .cover-tagline {
+      font-size: 8pt;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-xlight);
+      margin-top: 3mm;
+    }
+
+    /* ── DOC INFO TABLE (COVER) ────────────────── */
+    .doc-info-table {
+      width: 100%;
+      margin-top: 8mm;
+      border: 0.3mm solid var(--border);
+      border-radius: 1mm;
+      overflow: hidden;
+    }
+
+    .dit-row {
+      display: flex;
+      border-bottom: 0.3mm solid var(--border);
+    }
+
+    .dit-row:last-child { border-bottom: none; }
+
+    .dit-key {
+      width: 28mm;
+      padding: 2.5mm 3mm;
+      background: var(--bg-subtle);
+      font-size: 7pt;
+      font-weight: 600;
+      color: var(--text-mid);
+      letter-spacing: 0.04em;
+      border-right: 0.3mm solid var(--border);
+    }
+
+    .dit-val {
+      flex: 1;
+      padding: 2.5mm 3mm;
+      font-size: 7.5pt;
+      color: var(--text-dark);
+    }
+
+    /* ── FIELD BLOCKS ──────────────────────────── */
+    .field-label {
+      font-size: 7pt;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5mm;
+    }
+
+    .field-box {
+      width: 100%;
+      min-height: 16mm;
+      border: 0.3mm solid var(--border);
+      border-radius: 1mm;
+      background: var(--bg-field);
+      margin-bottom: 4mm;
+      padding: 2mm 2.5mm;
+    }
+
+    .field-box.tall { min-height: 24mm; }
+    .field-box.short { min-height: 10mm; }
+    .field-box.medium { min-height: 19mm; }
+
+    .field-hint {
+      font-size: 6.5pt;
+      color: var(--text-xlight);
+      padding-top: 1mm;
+    }
+
+    /* ── TWO COLUMN ────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4mm;
+    }
+
+    /* ── PRINCIPLE FORM ────────────────────────── */
+    .principle-row {
+      display: flex;
+      gap: 3mm;
+      align-items: flex-start;
+      margin-bottom: 3mm;
+      padding-bottom: 3mm;
+      border-bottom: 0.2mm solid var(--border-light);
+    }
+
+    .principle-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .pr-num {
+      font-size: 7pt;
+      color: var(--accent);
+      font-weight: 600;
+      min-width: 10mm;
+      padding-top: 0.5mm;
+      letter-spacing: 0.06em;
+    }
+
+    .pr-content { flex: 1; }
+
+    .pr-name-box {
+      border: none;
+      border-bottom: 0.3mm solid var(--border);
+      width: 100%;
+      padding: 0.5mm 0;
+      margin-bottom: 1.5mm;
+    }
+
+    .pr-name-label {
+      font-size: 6.5pt;
+      color: var(--text-light);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5mm;
+    }
+
+    .pr-desc-box {
+      width: 100%;
+      min-height: 8mm;
+      border: 0.3mm solid var(--border-light);
+      border-radius: 0.5mm;
+      background: var(--bg-field);
+    }
+
+    /* ── LOGO PREVIEW BOXES ────────────────────── */
+    .logo-grid-form {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 3mm;
+      margin-bottom: 4mm;
+    }
+
+    .logo-form-box {
+      border: 0.3mm dashed var(--border);
+      border-radius: 1mm;
+      background: var(--bg-field);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1mm;
+    }
+
+    .logo-form-box.primary {
+      grid-row: 1 / 3;
+      min-height: 35mm;
+    }
+
+    .logo-form-box.secondary { min-height: 15mm; }
+
+    .lfb-label {
+      font-size: 6pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-xlight);
+    }
+
+    .lfb-size-hint {
+      font-size: 5.5pt;
+      color: var(--text-xlight);
+    }
+
+    /* ── COLOR SWATCH FORM ─────────────────────── */
+    .swatch-form-row {
+      display: flex;
+      gap: 3mm;
+      margin-bottom: 4mm;
+    }
+
+    .swatch-form-item {
+      flex: 1;
+      border: 0.3mm solid var(--border);
+      border-radius: 1mm;
+      overflow: hidden;
+    }
+
+    .sfw-color {
+      height: 12mm;
+      background: var(--bg-subtle);
+      border-bottom: 0.3mm dashed var(--border);
+    }
+
+    .sfw-info {
+      padding: 1.5mm 2mm;
+    }
+
+    .sfw-name-row {
+      display: flex;
+      border-bottom: 0.2mm solid var(--border-light);
+      margin-bottom: 1mm;
+      padding-bottom: 0.5mm;
+    }
+
+    .sfw-key {
+      font-size: 6pt;
+      color: var(--text-light);
+      min-width: 12mm;
+    }
+
+    .sfw-val {
+      flex: 1;
+      font-size: 6pt;
+      color: var(--text-xlight);
+    }
+
+    /* ── TYPOGRAPHY HIERARCHY FORM ─────────────── */
+    .typo-form-table {
+      width: 100%;
+      border: 0.3mm solid var(--border);
+      border-radius: 1mm;
+      overflow: hidden;
+    }
+
+    .tft-header {
+      display: grid;
+      grid-template-columns: 15mm 25mm 1fr 30mm;
+      background: var(--bg-subtle);
+      border-bottom: 0.3mm solid var(--border);
+    }
+
+    .tft-row {
+      display: grid;
+      grid-template-columns: 15mm 25mm 1fr 30mm;
+      border-bottom: 0.3mm solid var(--border-light);
+    }
+
+    .tft-row:last-child { border-bottom: none; }
+
+    .tft-cell {
+      padding: 2mm 2.5mm;
+      border-right: 0.2mm solid var(--border-light);
+      font-size: 6.5pt;
+      color: var(--text-mid);
+    }
+
+    .tft-cell:last-child { border-right: none; }
+
+    .tft-cell.header {
+      font-size: 6pt;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .tft-tag {
+      font-size: 7pt;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── INCORRECT USAGE GRID ──────────────────── */
+    .incorrect-grid-form {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5mm;
+    }
+
+    .ic-form-item {
+      border: 0.3mm solid var(--border);
+      border-radius: 1mm;
+      overflow: hidden;
+    }
+
+    .ic-vis-box {
+      height: 14mm;
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 0.2mm solid var(--border);
+    }
+
+    .ic-vis-placeholder {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #c0c5d0;
+    }
+
+    .ic-rule-form {
+      padding: 1.5mm 2mm;
+      display: flex;
+      align-items: center;
+      gap: 1mm;
+    }
+
+    .ic-x-form {
+      color: #ef4444;
+      font-size: 8pt;
+      font-weight: 700;
+    }
+
+    .ic-rule-text {
+      font-size: 6.5pt;
+      color: var(--text-mid);
+    }
+
+    /* ── APPLICATION FORM ──────────────────────── */
+    .app-form-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3mm;
+    }
+
+    .app-form-item {
+      border: 0.3mm solid var(--border);
+      border-radius: 1mm;
+    }
+
+    .app-preview-box {
+      height: 22mm;
+      background: var(--bg-subtle);
+      border-bottom: 0.3mm solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app-preview-hint {
+      font-size: 6pt;
+      color: var(--text-xlight);
+      letter-spacing: 0.06em;
+    }
+
+    .app-item-label {
+      padding: 1.5mm 2mm;
+      font-size: 6.5pt;
+      font-weight: 600;
+      color: var(--text-mid);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FILE MGMT TABLE ───────────────────────── */
+    .file-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4mm;
+    }
+
+    .file-table th, .file-table td {
+      border: 0.3mm solid var(--border);
+      padding: 2mm 2.5mm;
+      font-size: 7pt;
+      text-align: left;
+    }
+
+    .file-table th {
+      background: var(--bg-subtle);
+      font-weight: 600;
+      color: var(--text-mid);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 6.5pt;
+    }
+
+    .file-table td {
+      color: var(--text-dark);
+    }
+
+    .file-table tr td:empty {
+      min-height: 5mm;
+      height: 6mm;
+    }
+
+    /* ── REVISION TABLE ────────────────────────── */
+    .revision-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .revision-table th, .revision-table td {
+      border: 0.3mm solid var(--border);
+      padding: 2mm 2.5mm;
+      font-size: 7pt;
+    }
+
+    .revision-table th {
+      background: var(--bg-subtle);
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+    }
+
+    .revision-table td { height: 7mm; color: var(--text-dark); }
+
+    /* ── GRAY SCALE ROW ────────────────────────── */
+    .gs-form-row {
+      display: flex;
+      gap: 2mm;
+      margin-bottom: 3mm;
+    }
+
+    .gs-form-chip {
+      flex: 1;
+      height: 10mm;
+      border-radius: 0.5mm;
+      border: 0.3mm solid var(--border);
+      background: var(--bg-subtle);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1mm;
+    }
+
+    .gs-form-label {
+      font-size: 5.5pt;
+      color: var(--text-light);
+    }
+
+    /* ── PHOTOGRAPHY GUIDE ─────────────────────── */
+    .photo-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+    }
+
+    .photo-form-col { }
+
+    .photo-col-header {
+      padding: 1.5mm 2.5mm;
+      margin-bottom: 2mm;
+      border-radius: 0.5mm;
+    }
+
+    .photo-col-header.good { background: #f0fdf4; border: 0.3mm solid #bbf7d0; }
+    .photo-col-header.bad  { background: #fef2f2; border: 0.3mm solid #fecaca; }
+
+    .photo-col-badge {
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .photo-col-badge.good { color: #16a34a; }
+    .photo-col-badge.bad  { color: #dc2626; }
+
+    .photo-form-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5mm;
+    }
+
+    .photo-form-list li {
+      font-size: 7pt;
+      color: var(--text-mid);
+      padding-left: 3.5mm;
+      position: relative;
+    }
+
+    .photo-form-list li::before {
+      position: absolute;
+      left: 0;
+      font-size: 6.5pt;
+    }
+
+    .good-list li::before { content: '✓'; color: #16a34a; }
+    .bad-list  li::before { content: '✕'; color: #dc2626; }
+
+    .photo-field-box {
+      width: 100%;
+      min-height: 20mm;
+      border: 0.3mm dashed var(--border);
+      border-radius: 1mm;
+      background: var(--bg-field);
+      margin-top: 2mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-field-hint {
+      font-size: 6.5pt;
+      color: var(--text-xlight);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── NAMING EXAMPLE ────────────────────────── */
+    .naming-box {
+      background: var(--bg-subtle);
+      border: 0.3mm solid var(--border);
+      border-radius: 1mm;
+      padding: 3mm 4mm;
+      margin-bottom: 3mm;
+    }
+
+    .naming-code {
+      font-size: 8.5pt;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-dark);
+      margin-bottom: 2mm;
+    }
+
+    .nc-brand { color: #2563EB; }
+    .nc-type  { color: #16a34a; }
+    .nc-var   { color: #d97706; }
+    .nc-col   { color: #db2777; }
+    .nc-ver   { color: var(--text-light); }
+
+    .naming-guide {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2mm;
+    }
+
+    .ng-item { font-size: 6pt; color: var(--text-mid); }
+    .ng-key  { font-weight: 600; color: var(--text-light); display: block; margin-bottom: 0.5mm; }
+
+    /* ── SECTION BODY ──────────────────────────── */
+    .section-body { flex: 1; }
+
+    /* ── UTILITY ───────────────────────────────── */
+    .mt-3 { margin-top: 3mm; }
+    .mt-4 { margin-top: 4mm; }
+    .mb-3 { margin-bottom: 3mm; }
+
+    /* ── PAGE LABEL BADGE ──────────────────────── */
+    .page-num-badge {
+      position: absolute;
+      bottom: 12mm;
+      right: 20mm;
+      font-size: 6pt;
+      color: var(--text-xlight);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─ CONFIDENTIAL WATERMARK ─────────────────── */
+    .confidential-mark {
+      font-size: 6pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-xlight);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── PRINT CONTROLS ─────────────────────────── -->
+<div class="print-controls">
+  <button class="btn-print" onclick="window.print()">🖨 인쇄 / PDF 저장</button>
+  <div class="btn-guide">A4 · 화이트 양식 · v1.0 TEMP</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE 01 — COVER
+     ════════════════════════════════════════ -->
+<div class="page page-break" id="pg-cover">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo">
+        <span class="ph-oh">OH</span>
+        <span class="ph-tech">Technology</span>
+      </div>
+      <div class="ph-company">OH Technology Co., Ltd · www.oh-technology.com</div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">CONFIDENTIAL · INTERNAL USE ONLY</div>
+    </div>
+  </header>
+
+  <div class="cover-body">
+    <div class="cover-badge">Brand Identity Guideline</div>
+
+    <div class="cover-logo-block">
+      <div class="cover-logo-ph">
+        <span class="cover-logo-ph-text">[ LOGO ]</span>
+      </div>
+      <div class="cover-logo-label">로고 확정 후 삽입</div>
+    </div>
+
+    <div class="cover-wordmark">
+      <span class="cover-oh">OH</span>
+      <span class="cover-technology">Technology</span>
+    </div>
+
+    <div class="cover-company-name">OH Technology Co., Ltd</div>
+
+    <div class="cover-meta-row">
+      <span>www.oh-technology.com</span>
+      <span class="cover-meta-sep">·</span>
+      <span>Version 1.0</span>
+      <span class="cover-meta-sep">·</span>
+      <span>2026</span>
+    </div>
+
+    <div class="cover-tagline">Precision · Trust · Innovation</div>
+
+    <table class="doc-info-table" style="max-width:90mm;">
+      <div class="dit-row">
+        <div class="dit-key">문서명</div>
+        <div class="dit-val">Brand Identity Guideline</div>
+      </div>
+      <div class="dit-row">
+        <div class="dit-key">버전</div>
+        <div class="dit-val">v1.0 (임시)</div>
+      </div>
+      <div class="dit-row">
+        <div class="dit-key">발행일</div>
+        <div class="dit-val">&nbsp;</div>
+      </div>
+      <div class="dit-row">
+        <div class="dit-key">담당</div>
+        <div class="dit-val">&nbsp;</div>
+      </div>
+      <div class="dit-row">
+        <div class="dit-key">승인</div>
+        <div class="dit-val">&nbsp;</div>
+      </div>
+    </table>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential · Internal Use Only</div>
+    <div class="pf-center">OH Technology Co., Ltd</div>
+    <div class="pf-right">Cover</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 02 — 01. Brand Introduction
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">01. Brand Introduction</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">01</div>
+    <div class="sec-title">Brand Introduction</div>
+    <div class="sec-desc">브랜드의 철학과 정체성을 정의합니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="two-col" style="margin-bottom:4mm">
+      <div>
+        <div class="field-label">1.1 Brand Overview</div>
+        <div class="field-box tall">
+          <div class="field-hint">브랜드 소개를 입력하세요.</div>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">1.2 Vision</div>
+        <div class="field-box tall">
+          <div class="field-hint">비전을 입력하세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:4mm">
+      <div>
+        <div class="field-label">1.3 Mission</div>
+        <div class="field-box tall">
+          <div class="field-hint">미션을 입력하세요.</div>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">1.4 Core Value</div>
+        <div class="field-box tall">
+          <div class="field-hint">핵심 가치를 입력하세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-label">1.5 Brand Concept</div>
+    <div class="three-col">
+      <div>
+        <div class="field-box medium"><div class="field-hint">Brand Concept</div></div>
+      </div>
+      <div>
+        <div class="field-box medium"><div class="field-hint">Brand Keywords</div></div>
+      </div>
+      <div>
+        <div class="field-box medium"><div class="field-hint">Tone &amp; Manner</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">2 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 03 — 02. Design Principles
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">02. Design Principles</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">02</div>
+    <div class="sec-title">Design Principles</div>
+    <div class="sec-desc">브랜드를 표현하는 디자인의 기본 원칙입니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="principle-row">
+      <div class="pr-num">P.01</div>
+      <div class="pr-content">
+        <div class="pr-name-label">원칙명</div>
+        <div class="pr-name-box" style="border:none;border-bottom:0.3mm solid #e4e7ef;padding-bottom:1mm;margin-bottom:1.5mm;font-size:9pt;font-weight:600;color:#1a1e2a;">Scientific Minimalism</div>
+        <div class="pr-desc-box"><div class="field-hint" style="padding:1.5mm 2mm;">장식보다 정보 전달을 우선 · 과학적 신뢰감과 절제된 레이아웃 유지</div></div>
+      </div>
+    </div>
+
+    <div class="principle-row">
+      <div class="pr-num">P.02</div>
+      <div class="pr-content">
+        <div class="pr-name-label">원칙명</div>
+        <div class="pr-name-box" style="border:none;border-bottom:0.3mm solid #e4e7ef;padding-bottom:1mm;margin-bottom:1.5mm;font-size:9pt;font-weight:600;color:#1a1e2a;">Premium Industrial</div>
+        <div class="pr-desc-box"><div class="field-hint" style="padding:1.5mm 2mm;">하이엔드 산업 디자인 감성</div></div>
+      </div>
+    </div>
+
+    <div class="principle-row">
+      <div class="pr-num">P.03</div>
+      <div class="pr-content">
+        <div class="pr-name-label">원칙명</div>
+        <div class="pr-name-box" style="border:none;border-bottom:0.3mm solid #e4e7ef;padding-bottom:1mm;margin-bottom:1.5mm;font-size:9pt;font-weight:600;color:#1a1e2a;">Human First</div>
+        <div class="pr-desc-box"><div class="field-hint" style="padding:1.5mm 2mm;">사용자 중심의 직관적인 경험</div></div>
+      </div>
+    </div>
+
+    <div class="principle-row">
+      <div class="pr-num">P.04</div>
+      <div class="pr-content">
+        <div class="pr-name-label">원칙명</div>
+        <div class="pr-name-box" style="border:none;border-bottom:0.3mm solid #e4e7ef;padding-bottom:1mm;margin-bottom:1.5mm;font-size:9pt;font-weight:600;color:#1a1e2a;">Quiet Confidence</div>
+        <div class="pr-desc-box"><div class="field-hint" style="padding:1.5mm 2mm;">과장 없이 신뢰감을 전달하는 표현</div></div>
+      </div>
+    </div>
+
+    <div class="principle-row">
+      <div class="pr-num">P.05</div>
+      <div class="pr-content">
+        <div class="pr-name-label">원칙명</div>
+        <div class="pr-name-box" style="border:none;border-bottom:0.3mm solid #e4e7ef;padding-bottom:1mm;margin-bottom:1.5mm;font-size:9pt;font-weight:600;color:#1a1e2a;">Invisible Technology</div>
+        <div class="pr-desc-box"><div class="field-hint" style="padding:1.5mm 2mm;">기술을 과시하지 않고 자연스럽게 전달</div></div>
+      </div>
+    </div>
+
+    <div class="principle-row">
+      <div class="pr-num">P.06</div>
+      <div class="pr-content">
+        <div class="pr-name-label">원칙명</div>
+        <div class="pr-name-box" style="border:none;border-bottom:0.3mm solid #e4e7ef;padding-bottom:1mm;margin-bottom:1.5mm;font-size:9pt;font-weight:600;color:#1a1e2a;">Precision over Decoration</div>
+        <div class="pr-desc-box"><div class="field-hint" style="padding:1.5mm 2mm;">장식보다 정확성과 기능성을 우선</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">3 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 04 — 03. Logo System
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">03. Logo System</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">03</div>
+    <div class="sec-title">Logo System</div>
+    <div class="sec-desc">로고의 구성과 사용 규정을 정의합니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="field-label">3.1 – 3.5 로고 시스템</div>
+    <div class="logo-grid-form" style="margin-bottom:5mm;">
+      <div class="logo-form-box primary">
+        <div class="lfb-label">Primary Logo</div>
+        <div class="lfb-size-hint">로고 파일 삽입</div>
+      </div>
+      <div class="logo-form-box secondary">
+        <div class="lfb-label">Horizontal</div>
+      </div>
+      <div class="logo-form-box secondary">
+        <div class="lfb-label">Vertical</div>
+      </div>
+      <div class="logo-form-box secondary">
+        <div class="lfb-label">Symbol</div>
+      </div>
+      <div class="logo-form-box secondary">
+        <div class="lfb-label">Wordmark</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="field-label">3.6 Grid System</div>
+        <div class="field-box" style="min-height:20mm;display:flex;align-items:center;justify-content:center;">
+          <div style="width:70%;height:80%;border:0.3mm dashed #c8cdd9;position:relative;display:flex;align-items:center;justify-content:center;">
+            <div style="position:absolute;top:50%;left:0;right:0;height:0.2mm;background:#e4e7ef;"></div>
+            <div style="position:absolute;left:50%;top:0;bottom:0;width:0.2mm;background:#e4e7ef;"></div>
+            <span style="font-size:6.5pt;color:#c8cdd9;">Grid 기준 입력</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">3.7 Minimum Size</div>
+        <div style="display:flex;flex-direction:column;gap:2mm;">
+          <div style="border:0.3mm solid #e4e7ef;border-radius:1mm;padding:2mm 2.5mm;background:#fafbfd;">
+            <div style="font-size:6.5pt;color:#9ba3b4;margin-bottom:0.5mm;">인쇄 최소 크기</div>
+            <div style="font-size:8pt;color:#c8cdd9;">— mm</div>
+          </div>
+          <div style="border:0.3mm solid #e4e7ef;border-radius:1mm;padding:2mm 2.5mm;background:#fafbfd;">
+            <div style="font-size:6.5pt;color:#9ba3b4;margin-bottom:0.5mm;">디지털 최소 크기</div>
+            <div style="font-size:8pt;color:#c8cdd9;">— px</div>
+          </div>
+        </div>
+
+        <div class="field-label mt-3">3.8 Clear Space</div>
+        <div class="field-box" style="min-height:14mm;display:flex;align-items:center;justify-content:center;">
+          <div style="border:0.3mm dashed #c0c8e0;padding:3mm;background:rgba(37,99,235,0.03);">
+            <div style="border:0.3mm solid #e4e7ef;padding:2mm 4mm;font-size:6.5pt;color:#9ba3b4;">Logo Area</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">4 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 05 — 04. Logo Color
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">04. Logo Color</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">04</div>
+    <div class="sec-title">Logo Color</div>
+    <div class="sec-desc">배경에 따른 로고 사용 기준입니다.</div>
+    <div class="sec-divider"></div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-bottom:4mm;">
+      <div style="border:0.3mm solid #e4e7ef;border-radius:1mm;overflow:hidden;">
+        <div style="height:22mm;background:#ffffff;border:0.3mm solid #f0f2f8;display:flex;align-items:center;justify-content:center;border-bottom:0.3mm solid #e4e7ef;">
+          <div style="font-size:10pt;font-weight:700;color:#1a1e2a;letter-spacing:0.06em;">OH TECHNOLOGY</div>
+        </div>
+        <div style="padding:2mm;font-size:6.5pt;color:#5a6478;">4.1 Full Color · White BG</div>
+      </div>
+      <div style="border:0.3mm solid #e4e7ef;border-radius:1mm;overflow:hidden;">
+        <div style="height:22mm;background:#1a1e2a;display:flex;align-items:center;justify-content:center;border-bottom:0.3mm solid #e4e7ef;">
+          <div style="font-size:10pt;font-weight:700;color:#ffffff;letter-spacing:0.06em;">OH TECHNOLOGY</div>
+        </div>
+        <div style="padding:2mm;font-size:6.5pt;color:#5a6478;">4.2 White · Dark BG</div>
+      </div>
+      <div style="border:0.3mm solid #e4e7ef;border-radius:1mm;overflow:hidden;">
+        <div style="height:22mm;background:#0a0a0a;display:flex;align-items:center;justify-content:center;border-bottom:0.3mm solid #e4e7ef;">
+          <div style="font-size:10pt;font-weight:700;color:#ffffff;letter-spacing:0.06em;">OH TECHNOLOGY</div>
+        </div>
+        <div style="padding:2mm;font-size:6.5pt;color:#5a6478;">4.3 White · Black BG</div>
+      </div>
+      <div style="border:0.3mm solid #e4e7ef;border-radius:1mm;overflow:hidden;">
+        <div style="height:22mm;background:#c8cdd9;display:flex;align-items:center;justify-content:center;border-bottom:0.3mm solid #e4e7ef;">
+          <div style="font-size:10pt;font-weight:700;color:#1a1e2a;letter-spacing:0.06em;">OH TECHNOLOGY</div>
+        </div>
+        <div style="padding:2mm;font-size:6.5pt;color:#5a6478;">4.4 Black · Gray BG</div>
+      </div>
+      <div style="border:0.3mm solid #e4e7ef;border-radius:1mm;overflow:hidden;">
+        <div style="height:22mm;background:linear-gradient(135deg,#1a2a4a,#2a4a6a);display:flex;align-items:center;justify-content:center;border-bottom:0.3mm solid #e4e7ef;position:relative;">
+          <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
+          <div style="font-size:10pt;font-weight:700;color:#ffffff;letter-spacing:0.06em;position:relative;z-index:1;">OH TECHNOLOGY</div>
+        </div>
+        <div style="padding:2mm;font-size:6.5pt;color:#5a6478;">4.5 White · Photo BG</div>
+      </div>
+      <div style="border:0.3mm dashed #e4e7ef;border-radius:1mm;overflow:hidden;">
+        <div style="height:22mm;background:#f8f9fc;display:flex;align-items:center;justify-content:center;border-bottom:0.3mm dashed #e4e7ef;">
+          <div style="font-size:7pt;color:#c8cdd9;letter-spacing:0.08em;">추가 케이스 입력</div>
+        </div>
+        <div style="padding:2mm;font-size:6.5pt;color:#c8cdd9;">4.6 Additional</div>
+      </div>
+    </div>
+
+    <div class="field-label">4.5 배경 사용 지침 (Background Usage)</div>
+    <div class="three-col">
+      <div>
+        <div style="font-size:6.5pt;color:#9ba3b4;margin-bottom:1mm;">밝은 배경</div>
+        <div class="field-box short"><div class="field-hint">사용 지침 입력</div></div>
+      </div>
+      <div>
+        <div style="font-size:6.5pt;color:#9ba3b4;margin-bottom:1mm;">어두운 배경</div>
+        <div class="field-box short"><div class="field-hint">사용 지침 입력</div></div>
+      </div>
+      <div>
+        <div style="font-size:6.5pt;color:#9ba3b4;margin-bottom:1mm;">사진 위 사용</div>
+        <div class="field-box short"><div class="field-hint">사용 지침 입력</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">5 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 06 — 05. Incorrect Usage
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">05. Incorrect Usage</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">05</div>
+    <div class="sec-title">Incorrect Usage</div>
+    <div class="sec-desc">잘못된 로고 사용 사례를 정의합니다. 아래 모든 사용 방식은 금지됩니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="incorrect-grid-form">
+      <div class="ic-form-item"><div class="ic-vis-box"><div style="transform:scaleX(1.9);font-size:12pt;font-weight:700;color:#c0c5d0;">OH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">비율 변경 금지</span></div></div>
+      <div class="ic-form-item"><div class="ic-vis-box"><div style="transform:rotate(-25deg);font-size:9pt;font-weight:700;color:#c0c5d0;">OH TECH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">회전 금지</span></div></div>
+      <div class="ic-form-item"><div class="ic-vis-box"><div style="text-shadow:3px 3px 4px rgba(0,0,0,0.3);font-size:10pt;font-weight:700;color:#9ba3b4;">OH TECH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">그림자 사용 금지</span></div></div>
+      <div class="ic-form-item"><div class="ic-vis-box"><div style="-webkit-text-stroke:0.5px #9ba3b4;color:transparent;font-size:10pt;font-weight:700;">OH TECH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">외곽선 사용 금지</span></div></div>
+      <div class="ic-form-item"><div class="ic-vis-box"><div style="font-size:10pt;font-weight:700;color:#e74c3c;">OH TECH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">색상 변경 금지</span></div></div>
+      <div class="ic-form-item"><div class="ic-vis-box"><div style="transform:skewX(-20deg);font-size:10pt;font-weight:700;color:#c0c5d0;">OH TECH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">왜곡 금지</span></div></div>
+      <div class="ic-form-item"><div class="ic-vis-box" style="background:#b0b8c5;"><div style="font-size:10pt;font-weight:700;color:#c8cdd9;">OH TECH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">배경 대비 부족</span></div></div>
+      <div class="ic-form-item"><div class="ic-vis-box"><div style="background:linear-gradient(90deg,#3B82F6,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:10pt;font-weight:700;">OH TECH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">효과 적용 금지</span></div></div>
+      <div class="ic-form-item"><div class="ic-vis-box"><div style="font-size:5pt;font-weight:700;color:#c0c5d0;">OH TECH</div></div><div class="ic-rule-form"><span class="ic-x-form">✕</span><span class="ic-rule-text">최소 크기 이하</span></div></div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">6 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 07 — 06. Color System
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">06. Color System</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">06</div>
+    <div class="sec-title">Color System</div>
+    <div class="sec-desc">브랜드 컬러 시스템을 정의합니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="field-label">6.1 Primary Color</div>
+    <div class="swatch-form-row" style="margin-bottom:5mm;">
+      <div class="swatch-form-item" style="max-width:60mm;">
+        <div class="sfw-color"></div>
+        <div class="sfw-info">
+          <div style="font-size:7.5pt;font-weight:600;color:#1a1e2a;margin-bottom:1.5mm;">Primary Brand Color</div>
+          <div class="sfw-name-row"><span class="sfw-key">HEX</span><span class="sfw-val">#——</span></div>
+          <div class="sfw-name-row"><span class="sfw-key">RGB</span><span class="sfw-val">— — —</span></div>
+          <div class="sfw-name-row"><span class="sfw-key">CMYK</span><span class="sfw-val">— — — —</span></div>
+          <div class="sfw-name-row" style="border:none;"><span class="sfw-key">Pantone</span><span class="sfw-val">——</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-label">6.2 Secondary Color</div>
+    <div class="swatch-form-row" style="margin-bottom:5mm;">
+      <div class="swatch-form-item">
+        <div class="sfw-color" style="background:#ebeef5;"></div>
+        <div class="sfw-info">
+          <div style="font-size:7pt;color:#c8cdd9;margin-bottom:1.5mm;">Secondary 01</div>
+          <div class="sfw-name-row"><span class="sfw-key">HEX</span><span class="sfw-val">#——</span></div>
+          <div class="sfw-name-row" style="border:none;"><span class="sfw-key">RGB</span><span class="sfw-val">——</span></div>
+        </div>
+      </div>
+      <div class="swatch-form-item">
+        <div class="sfw-color" style="background:#f0f2f8;"></div>
+        <div class="sfw-info">
+          <div style="font-size:7pt;color:#c8cdd9;margin-bottom:1.5mm;">Secondary 02</div>
+          <div class="sfw-name-row"><span class="sfw-key">HEX</span><span class="sfw-val">#——</span></div>
+          <div class="sfw-name-row" style="border:none;"><span class="sfw-key">RGB</span><span class="sfw-val">——</span></div>
+        </div>
+      </div>
+      <div class="swatch-form-item">
+        <div class="sfw-color" style="background:#f8f9fc;"></div>
+        <div class="sfw-info">
+          <div style="font-size:7pt;color:#c8cdd9;margin-bottom:1.5mm;">Secondary 03</div>
+          <div class="sfw-name-row"><span class="sfw-key">HEX</span><span class="sfw-val">#——</span></div>
+          <div class="sfw-name-row" style="border:none;"><span class="sfw-key">RGB</span><span class="sfw-val">——</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-label">6.3 Neutral / Gray Scale</div>
+    <div class="gs-form-row">
+      <div class="gs-form-chip" style="background:#0a0a0a;"><span style="color:rgba(255,255,255,0.4);font-size:5.5pt;">900</span></div>
+      <div class="gs-form-chip" style="background:#1a1a1a;"><span style="color:rgba(255,255,255,0.4);font-size:5.5pt;">800</span></div>
+      <div class="gs-form-chip" style="background:#2d2d2d;"><span style="color:rgba(255,255,255,0.4);font-size:5.5pt;">700</span></div>
+      <div class="gs-form-chip" style="background:#4a4a4a;"><span style="color:rgba(255,255,255,0.4);font-size:5.5pt;">600</span></div>
+      <div class="gs-form-chip" style="background:#6a6a6a;"><span style="color:rgba(255,255,255,0.5);font-size:5.5pt;">500</span></div>
+      <div class="gs-form-chip" style="background:#8a8a8a;"><span style="color:rgba(255,255,255,0.6);font-size:5.5pt;">400</span></div>
+      <div class="gs-form-chip" style="background:#a8a8a8;"><span style="color:#fff;font-size:5.5pt;">300</span></div>
+      <div class="gs-form-chip" style="background:#c4c4c4;"><span style="font-size:5.5pt;color:#666;">200</span></div>
+      <div class="gs-form-chip" style="background:#e0e0e0;"><span style="font-size:5.5pt;color:#666;">100</span></div>
+      <div class="gs-form-chip" style="background:#f5f5f5;border:0.3mm solid #e4e7ef;"><span style="font-size:5.5pt;color:#666;">50</span></div>
+    </div>
+
+    <div class="two-col mt-4">
+      <div>
+        <div class="field-label">컬러 사용 원칙</div>
+        <div class="field-box tall"><div class="field-hint">컬러 사용 지침을 입력하세요.</div></div>
+      </div>
+      <div>
+        <div class="field-label">컬러 비율 가이드</div>
+        <div class="field-box tall"><div class="field-hint">주색 / 보조색 / 중립색 비율 입력</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">7 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 08 — 07. Typography
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">07. Typography</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">07</div>
+    <div class="sec-title">Typography</div>
+    <div class="sec-desc">브랜드 서체 사용 규정입니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="two-col" style="margin-bottom:5mm;">
+      <div>
+        <div class="field-label">7.1 Primary Typeface · 국문</div>
+        <div class="field-box" style="min-height:18mm;padding:2.5mm 3mm;">
+          <div style="font-size:16pt;font-weight:400;color:#c8cdd9;font-family:'Noto Sans KR',sans-serif;margin-bottom:1mm;">가나다라마바사</div>
+          <div style="font-size:6.5pt;color:#c8cdd9;">서체명 입력</div>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">7.1 Primary Typeface · 영문</div>
+        <div class="field-box" style="min-height:18mm;padding:2.5mm 3mm;">
+          <div style="font-size:14pt;font-weight:400;color:#c8cdd9;font-family:'Inter',sans-serif;margin-bottom:1mm;">ABCDEFGHIJ abcdefghij</div>
+          <div style="font-size:6.5pt;color:#c8cdd9;">서체명 입력</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-label">7.2 Secondary Typeface</div>
+    <div class="field-box short" style="margin-bottom:5mm;"><div class="field-hint">보조 서체 입력</div></div>
+
+    <div class="field-label">7.3 Typography Hierarchy</div>
+    <div class="typo-form-table">
+      <div class="tft-header">
+        <div class="tft-cell header">Tag</div>
+        <div class="tft-cell header">Size · Weight</div>
+        <div class="tft-cell header">Sample</div>
+        <div class="tft-cell header">Line Height</div>
+      </div>
+      <div class="tft-row">
+        <div class="tft-cell"><span class="tft-tag">H1</span></div>
+        <div class="tft-cell" style="color:#c8cdd9;">— pt / —</div>
+        <div class="tft-cell" style="font-size:14pt;font-weight:700;color:#1a1e2a;line-height:1;">OH Technology</div>
+        <div class="tft-cell" style="color:#c8cdd9;">—</div>
+      </div>
+      <div class="tft-row">
+        <div class="tft-cell"><span class="tft-tag">H2</span></div>
+        <div class="tft-cell" style="color:#c8cdd9;">— pt / —</div>
+        <div class="tft-cell" style="font-size:11pt;font-weight:600;color:#1a1e2a;">Brand Identity</div>
+        <div class="tft-cell" style="color:#c8cdd9;">—</div>
+      </div>
+      <div class="tft-row">
+        <div class="tft-cell"><span class="tft-tag">Body</span></div>
+        <div class="tft-cell" style="color:#c8cdd9;">— pt / —</div>
+        <div class="tft-cell" style="font-size:8pt;color:#5a6478;line-height:1.6;">브랜드는 기업이 세상과 소통하는 방식입니다.</div>
+        <div class="tft-cell" style="color:#c8cdd9;">—</div>
+      </div>
+      <div class="tft-row">
+        <div class="tft-cell"><span class="tft-tag">Caption</span></div>
+        <div class="tft-cell" style="color:#c8cdd9;">— pt / —</div>
+        <div class="tft-cell" style="font-size:6.5pt;color:#9ba3b4;">OH Technology Co., Ltd</div>
+        <div class="tft-cell" style="color:#c8cdd9;">—</div>
+      </div>
+      <div class="tft-row">
+        <div class="tft-cell"><span class="tft-tag">Button</span></div>
+        <div class="tft-cell" style="color:#c8cdd9;">— pt / —</div>
+        <div class="tft-cell"><span style="background:#2563EB;color:#fff;padding:1.5mm 3mm;border-radius:0.5mm;font-size:7pt;font-weight:600;letter-spacing:0.08em;">CONTACT US</span></div>
+        <div class="tft-cell" style="color:#c8cdd9;">—</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">8 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 09 — 08. Brand Expression
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">08. Brand Expression</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">08</div>
+    <div class="sec-title">Brand Expression</div>
+    <div class="sec-desc">브랜드의 시각적 표현 원칙입니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="two-col" style="margin-bottom:4mm;">
+      <div>
+        <div class="field-label">8.1 Brand Keywords</div>
+        <div class="field-box" style="min-height:12mm;"><div class="field-hint">키워드 입력</div></div>
+      </div>
+      <div>
+        <div class="field-label">8.2 Visual Language</div>
+        <div class="field-box" style="min-height:12mm;"><div class="field-hint">비주얼 랭귀지 입력</div></div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:4mm;">
+      <div>
+        <div class="field-label">8.3 Design Keywords</div>
+        <div class="field-box" style="min-height:12mm;"><div class="field-hint">디자인 키워드 입력</div></div>
+      </div>
+      <div>
+        <div class="field-label">8.4 Tone &amp; Manner</div>
+        <div class="field-box" style="min-height:12mm;"><div class="field-hint">톤앤매너 입력</div></div>
+      </div>
+    </div>
+
+    <div class="three-col" style="margin-bottom:4mm;">
+      <div>
+        <div class="field-label">8.5 Icon Style</div>
+        <div class="field-box" style="min-height:14mm;"><div class="field-hint">아이콘 스타일 정의</div></div>
+      </div>
+      <div>
+        <div class="field-label">8.6 Image Style</div>
+        <div class="field-box" style="min-height:14mm;"><div class="field-hint">이미지 스타일 정의</div></div>
+      </div>
+      <div>
+        <div class="field-label">8.9 Shape Language</div>
+        <div class="field-box" style="min-height:14mm;"><div class="field-hint">형태 언어 정의</div></div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="field-label">8.7 Layout Principles · 8.8 White Space</div>
+        <div class="field-box" style="min-height:16mm;"><div class="field-hint">레이아웃 원칙 / 여백 규정 입력</div></div>
+      </div>
+      <div>
+        <div class="field-label">8.10 Motion Direction (Optional)</div>
+        <div class="field-box" style="min-height:16mm;"><div class="field-hint">모션 방향성 입력 (선택)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">9 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 10 — 09. Photography
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">09. Photography</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">09</div>
+    <div class="sec-title">Photography</div>
+    <div class="sec-desc">브랜드 이미지 사용 가이드입니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="photo-form-grid">
+      <div class="photo-form-col">
+        <div class="photo-col-header good">
+          <span class="photo-col-badge good">✓ GOOD — 사용 가능</span>
+        </div>
+        <ul class="photo-form-list good-list">
+          <li>깨끗한 실험실 환경</li>
+          <li>자연광 · 콜드 라이팅</li>
+          <li>프리미엄 소재 질감 표현</li>
+          <li>미세한 수분 · 디테일</li>
+          <li>여백이 충분한 구도</li>
+          <li>차분한 블루 계열 톤</li>
+          <li>과학적 · 분석적 분위기</li>
+        </ul>
+        <div class="photo-field-box">
+          <span class="photo-field-hint">이미지 샘플 삽입</span>
+        </div>
+      </div>
+      <div class="photo-form-col">
+        <div class="photo-col-header bad">
+          <span class="photo-col-badge bad">✕ BAD — 사용 금지</span>
+        </div>
+        <ul class="photo-form-list bad-list">
+          <li>과도한 스톡사진 느낌</li>
+          <li>사람 많은 복잡한 사진</li>
+          <li>과한 색 보정</li>
+          <li>노란 조명 · 웜 톤</li>
+          <li>복잡한 배경</li>
+          <li>과한 감성 필터</li>
+        </ul>
+        <div class="photo-field-box">
+          <span class="photo-field-hint">이미지 샘플 삽입</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-label mt-4">추가 이미지 가이드라인</div>
+    <div class="field-box" style="min-height:14mm;"><div class="field-hint">추가 지침 입력</div></div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">10 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 11 — 10. Application
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">10. Application</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Application</div>
+    <div class="sec-desc">브랜드 적용 사례입니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="app-form-grid">
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">명함 샘플</span></div>
+        <div class="app-item-label">명함 (Business Card)</div>
+      </div>
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">봉투 샘플</span></div>
+        <div class="app-item-label">봉투 (Envelope)</div>
+      </div>
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">PPT 샘플</span></div>
+        <div class="app-item-label">PPT 표지 (Presentation)</div>
+      </div>
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">문서 샘플</span></div>
+        <div class="app-item-label">문서 (Document)</div>
+      </div>
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">이메일 서명 샘플</span></div>
+        <div class="app-item-label">이메일 서명 (Email Signature)</div>
+      </div>
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">유니폼 샘플</span></div>
+        <div class="app-item-label">유니폼 (Uniform)</div>
+      </div>
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">차량 래핑 샘플</span></div>
+        <div class="app-item-label">차량 (Vehicle)</div>
+      </div>
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">현수막 샘플</span></div>
+        <div class="app-item-label">현수막 (Banner)</div>
+      </div>
+      <div class="app-form-item">
+        <div class="app-preview-box"><span class="app-preview-hint">패키지 샘플</span></div>
+        <div class="app-item-label">패키지 (Package)</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">11 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 12 — 11. File Management
+     ════════════════════════════════════════ -->
+<div class="page page-break">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">11. File Management</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">11</div>
+    <div class="sec-title">File Management</div>
+    <div class="sec-desc">브랜드 파일 관리 기준입니다.</div>
+    <div class="sec-divider"></div>
+
+    <div class="field-label">File Format 기준</div>
+    <table class="file-table" style="margin-bottom:5mm;">
+      <thead>
+        <tr>
+          <th>용도</th>
+          <th>포맷</th>
+          <th>특이사항</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>마스터 원본</td><td>AI · EPS</td><td>벡터, 편집 가능 원본</td></tr>
+        <tr><td>웹 / 디지털</td><td>SVG · PNG</td><td>투명 배경 PNG</td></tr>
+        <tr><td>인쇄 납품</td><td>PDF · EPS</td><td>CMYK 기준</td></tr>
+        <tr><td>&nbsp;</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="field-label">Naming Rule · 파일명 규칙</div>
+    <div class="naming-box">
+      <div class="naming-code">
+        <span class="nc-brand">OHT</span>_<span class="nc-type">LOGO</span>_<span class="nc-var">PRIMARY</span>_<span class="nc-col">BLK</span>_<span class="nc-ver">v1</span>.svg
+      </div>
+      <div class="naming-guide">
+        <div class="ng-item"><span class="ng-key">브랜드</span>OHT</div>
+        <div class="ng-item"><span class="ng-key">유형</span>LOGO / ICON</div>
+        <div class="ng-item"><span class="ng-key">변형</span>PRIMARY / SYMBOL</div>
+        <div class="ng-item"><span class="ng-key">컬러</span>BLK / WHT / COL</div>
+        <div class="ng-item"><span class="ng-key">버전</span>v1 / v2 …</div>
+      </div>
+    </div>
+
+    <div class="field-label mt-4">Version Management</div>
+    <table class="file-table">
+      <thead>
+        <tr>
+          <th>Version</th>
+          <th>Date</th>
+          <th>변경 내용</th>
+          <th>담당자</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>v1.0</td><td>&nbsp;</td><td>초기 배포 (임시)</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">12 / 13</div>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 13 — 12. Revision History
+     ════════════════════════════════════════ -->
+<div class="page">
+  <header class="page-header">
+    <div class="ph-brand">
+      <div class="ph-logo"><span class="ph-oh">OH</span><span class="ph-tech">Technology</span></div>
+    </div>
+    <div class="ph-doc-info">
+      <div class="ph-doc-title">Brand Identity Guideline</div>
+      <div class="ph-doc-meta">12. Revision History</div>
+    </div>
+  </header>
+
+  <div class="section-body">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Revision History</div>
+    <div class="sec-desc">문서 변경 이력을 관리합니다.</div>
+    <div class="sec-divider"></div>
+
+    <table class="revision-table">
+      <thead>
+        <tr>
+          <th style="width:18mm;">Version</th>
+          <th style="width:25mm;">수정일</th>
+          <th>변경 내용</th>
+          <th style="width:30mm;">담당자</th>
+          <th style="width:25mm;">승인</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>v1.0</td><td>2026. .</td><td>최초 버전 발행 (임시)</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Document Footer -->
+  <div style="margin-top:auto;padding-top:10mm;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;padding-top:5mm;border-top:0.4mm solid #1a1e2a;">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:2mm;margin-bottom:1mm;">
+          <span style="font-size:16pt;font-weight:700;color:#2563EB;">OH</span>
+          <span style="font-size:8pt;font-weight:300;color:#5a6478;letter-spacing:0.1em;text-transform:uppercase;">Technology</span>
+        </div>
+        <div style="font-size:6.5pt;color:#9ba3b4;">OH Technology Co., Ltd</div>
+        <div style="font-size:6.5pt;color:#9ba3b4;">www.oh-technology.com</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:6.5pt;color:#c8cdd9;letter-spacing:0.12em;text-transform:uppercase;">Brand Identity Guideline v1.0</div>
+        <div style="font-size:6.5pt;color:#c8cdd9;margin-top:1mm;">© 2026 OH Technology Co., Ltd. All rights reserved.</div>
+        <div style="font-size:6pt;color:#e4e7ef;letter-spacing:0.15em;text-transform:uppercase;margin-top:1mm;">CONFIDENTIAL · INTERNAL USE ONLY</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="pf-left confidential-mark">Confidential</div>
+    <div class="pf-center">OH Technology Co., Ltd · Brand Identity Guideline</div>
+    <div class="pf-right">13 / 13</div>
+  </footer>
+</div>
+
+</body>
+</html>
